@@ -1,14 +1,35 @@
+#include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include "gui.hpp"
 #include "ui_gui.h"
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Gui)
+    m_ui(new Ui::Gui)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
+    m_ui->centralWidget->setLayout(m_ui->main);
+    connect(m_ui->button, SIGNAL(clicked()), this, SLOT(buttonClicked()));
+
+    m_manager = new QNetworkAccessManager(this);
+    connect(m_manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply *)));
 }
 
 Gui::~Gui()
 {
-    delete ui;
+
+}
+
+void Gui::replyFinished(QNetworkReply *reply)
+{
+    m_ui->view->setPlainText(reply->readAll());
+    m_ui->statusBar->showMessage(QString("HTTP reply recieved!"));
+}
+
+void Gui::buttonClicked()
+{
+    const auto url = QUrl("http://" + m_ui->edit->text());
+    m_manager->get(QNetworkRequest(url));
+    m_ui->statusBar->showMessage(QString("Sending HTTP request..."));
 }

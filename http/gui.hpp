@@ -1,7 +1,9 @@
-#ifndef GUI_HPP
-#define GUI_HPP
-
+#pragma once
+#include <memory>
 #include <QMainWindow>
+
+class QNetworkAccessManager;
+class QNetworkReply;
 
 namespace Ui {
 class Gui;
@@ -14,9 +16,13 @@ class Gui : public QMainWindow
 public:
     explicit Gui(QWidget *parent = 0);
     ~Gui();
-    
+
+private slots:
+    void replyFinished(QNetworkReply *);
+    void buttonClicked();
+
 private:
-    Ui::Gui *ui;
+    std::unique_ptr<Ui::Gui> m_ui;
+    QNetworkAccessManager *m_manager;
 };
 
-#endif // GUI_HPP

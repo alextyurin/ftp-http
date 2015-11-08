@@ -1,24 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Gui</class>
- <widget class="QMainWindow" name="Gui" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="Gui">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>496</width>
+    <height>380</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Gui</string>
+  <property name="windowTitle">
+   <string>HTML client</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>110</y>
+      <width>268</width>
+      <height>229</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="main">
+     <property name="leftMargin">
+      <number>20</number>
+     </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="layout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>http://</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="edit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button">
+         <property name="text">
+          <string>Get Page</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="view">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
