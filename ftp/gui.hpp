@@ -19,6 +19,7 @@ public:
     
 private slots:
     void on_button_clicked();
+    void browse();
     void replyFinished(QNetworkReply *);
 
 private:
