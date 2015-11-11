@@ -23,13 +23,23 @@ Gui::~Gui()
 
 void Gui::replyFinished(QNetworkReply *reply)
 {
-    m_ui->view->setPlainText(reply->readAll());
-    m_ui->statusBar->showMessage(QString("HTTP reply recieved!"));
+    if(reply->error())
+    {
+         m_ui->view->clear();
+         m_ui->statusBar->showMessage(reply->errorString());
+    }
+    else
+    {
+        m_ui->view->setPlainText(reply->readAll());
+        m_ui->statusBar->showMessage(QString("HTTP reply recieved!"));
+    }
 }
 
 void Gui::buttonClicked()
 {
+
     const auto url = QUrl("http://" + m_ui->edit->text());
     m_manager->get(QNetworkRequest(url));
     m_ui->statusBar->showMessage(QString("Sending HTTP request..."));
+
 }
